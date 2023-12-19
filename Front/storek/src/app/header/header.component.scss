@@ -1,0 +1,24 @@
+@import "src/_variables.scss";
+
+:host ::ng-deep {
+  div{
+    background-color: var(--primary-color) !important;
+  }
+  .p-menubar {
+    background-color: var(--primary-color) !important;
+    color: $white;
+    border: none !important;
+    border-bottom: 2px solid var(--primary-color) !important;
+    border-radius: 0;
+  }
+  .p-menuitem {
+    padding: 20px;
+    max-width: 200px;
+  }
+  .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-content .p-menuitem-link .p-menuitem-text {
+      color: rgb(252 252 252 / 100%);
+  }
+  .p-menubar .p-menuitem > .p-menuitem-content .p-menuitem-link .p-menuitem-text {
+    color: rgb(255 255 255 / 100%);
+}
+}

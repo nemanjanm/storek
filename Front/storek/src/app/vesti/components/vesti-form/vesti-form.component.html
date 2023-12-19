@@ -1,0 +1,5 @@
+<p *ngIf="izmena; else kreirano">Poslednja izmena: {{izmena | date}}</p>
+<ng-template #kreirano>
+    <p>Datum kreiranja: {{datum | date}}</p>
+</ng-template>
+<p>{{text}}</p>

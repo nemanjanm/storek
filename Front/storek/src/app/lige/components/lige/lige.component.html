@@ -1,0 +1,89 @@
+<p-confirmDialog class="d-flex justify-content-center" #cd >
+  <ng-template pTemplate="footer">
+      <button type="button" pButton
+          icon="pi pi-check" label="Potvrdi"
+          (click)="cd.accept()">
+      </button>
+      <button type="button" pButton
+          icon="pi pi-times" label="Nazad"
+          (click)="cd.reject()">
+      </button>
+  </ng-template>
+</p-confirmDialog>
+<p-toast></p-toast>
+  <div class="d-flex justify-content-center align-items-center">
+  <div class="content">
+    <div class="w-200 d-flex align-items-center justify-content-between" style="margin-top: 3px;">
+  <h2 class="d-flex justify-content-center align-items-center" >Liga: {{ liga }}</h2>
+  <button *ngIf="admin" (click)="dodajTim()" pButton type="button" class="add p-button"><i class="pi pi-plus">&nbsp;</i>Dodaj Tim</button>
+</div>
+  <br>
+  <p-table [value]="timovi" *ngIf="timovi.length>0; else nemaTimova">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Naziv tima</th>
+        <th>Odigrano Mečeva</th>
+        <th>Pobede</th>
+        <th>Nerešene</th>
+        <th>Porazi</th>
+        <th>Dobijene Partije</th>
+        <th>Izgubljene Partije</th>
+        <th>Bodovi</th>
+        <th *ngIf="admin"></th>
+        <th *ngIf="admin"></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-tim>
+      <tr>
+        <td>{{ tim.nazivEkipe }}</td>
+        <td>{{ tim.ukupnoMeceva }}</td>
+        <td>{{ tim.pobede }}</td>
+        <td>{{ tim.nereseno }}</td>
+        <td>{{ tim.porazi }}</td>
+        <td>{{ tim.dobijeniSetovi }}</td>
+        <td>{{ tim.izgubljeniSetovi }}</td>
+        <td>{{ tim.bodovi }}</td>
+        <td *ngIf="admin" >
+          <button (click)="izmeni(tim)" pButton type="button" class="p-button-sm" [style]="{'background':'rgb(201, 172, 8)', 'border':'rgb(201, 172, 8)'}"><i class="pi pi-pencil">&nbsp;</i>Izmeni</button>
+        </td>
+        <td *ngIf="admin">
+          <button (click)="obrisi(tim)" pButton type="button" class="p-button-sm" [style]="{'background':'rgb(233, 44, 44)', 'border':'rgb(233, 44, 44)'}"><i class="pi pi-trash">&nbsp;</i>Obriši</button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <ng-template #nemaTimova>
+    Trenutno nema timova u ovoj ligi
+  </ng-template>
+  </div>
+  </div>
+  
+  <div class="d-flex justify-content-center align-items-center">
+    <div class="content" style="text-align: center">
+    <h2 class="d-flex justify-content-center align-items-center" >Raspored odigravanja</h2>
+    <br>
+    <p-table [value]="rezultati" *ngIf="rezultati.length>0; else nemaRezultata">
+        <ng-template pTemplate="body" let-rezultat>
+          <tr>
+            <th style="text-align: center" colspan="3" class="bottom">
+              Kolo: {{rezultat[0].kolo}}
+            </th>
+          </tr>
+          <tr *ngFor="let rez of rezultat">
+            <td style="text-align: center">{{ rez.tim1naziv }}</td>
+            <td style="text-align: center" *ngIf="rez.tim1rezultat; else nijeOdigrano"><a target="_blank" href="{{link}}/{{rez.slika}}">{{ rez.tim1rezultat +" : "+rez.tim2rezultat }}</a></td>
+            <ng-template #nijeOdigrano>
+              <td style="text-align: center">
+                <button *ngIf="admin" (click)="dodajRezultat(rez)" pButton type="button" class="add p-button"><i class="pi pi-plus">&nbsp;</i>Dodaj Rezultat</button>
+              </td>
+            </ng-template>
+            <td style="text-align: center">{{ rez.tim2naziv }}</td>
+          </tr>
+        </ng-template>
+    </p-table>
+    <ng-template #nemaRezultata>
+      Raspoered jos uvek nije kreiran<br><br>
+      <button *ngIf="admin" (click)="kreirajRaspored()" pButton type="button" class="add p-button"><i class="pi pi-plus">&nbsp;</i>Kreiraj Raspored</button><br>
+    </ng-template>
+    </div>
+    </div>

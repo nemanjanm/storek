@@ -1,0 +1,54 @@
+<p-confirmDialog class="d-flex justify-content-center" #cd >
+    <ng-template pTemplate="footer">
+        <button type="button" pButton
+            icon="pi pi-check" label="Potvrdi"
+            (click)="cd.accept()">
+        </button>
+        <button type="button" pButton
+            icon="pi pi-times" label="Nazad"
+            (click)="cd.reject()">
+        </button>
+    </ng-template>
+  </p-confirmDialog>
+<p-toast></p-toast>
+<div class="d-flex justify-content-center align-items-center">
+    <div class="content">
+        <div class="w-200 d-flex align-items-center justify-content-between" style="margin-top: 3px; border-bottom: 4px solid; border-bottom-color: var(--primary-color) !important;">
+            <h2 class="d-flex justify-content-center align-items-center" >Liga: {{ liga }}</h2>
+            <button *ngIf="admin" (click)="dodajTim()" pButton type="button" class="add p-button"><i class="pi pi-plus">&nbsp;</i>Dodaj Tim</button>
+        </div>
+        <p-table [value]="res" *ngIf="res.length>0; else nemaTimova">
+            <ng-template pTemplate="body" let-res class="borders">
+                <tr>
+                  <th colspan="5" style="text-align: center;"><h3>{{ res.nazivEkipe }}</h3></th>
+                </tr>
+                <tr>
+                  <td style="text-align: center; border: none;"><b>Kapiten: </b>{{ res.kapiten }}</td>
+                  <td style="text-align: center; border: none;"><b>Kontakt: </b>{{ res.kontakt }}</td>
+                  <td *ngIf="admin" style="text-align: center; border: none;">
+                    <button (click)="izmeni(res)" pButton type="button" class="p-button-sm" [style]="{'background':'rgb(201, 172, 8)', 'border':'rgb(201, 172, 8)'}"><i class="pi pi-pencil">&nbsp;</i>Izmeni</button>
+                  </td>
+                  <td *ngIf="admin" style="text-align: center; border: none;">
+                    <button (click)="obrisi(res)" pButton type="button" class="p-button-sm" [style]="{'background':'rgb(233, 44, 44)', 'border':'rgb(233, 44, 44)'}"><i class="pi pi-trash">&nbsp;</i>Obriši</button>
+                  </td>
+                </tr>
+                <tr>
+                    <th colspan="5" style="text-align: center;"><h4>Igrači</h4></th>
+                </tr>
+                <tr>
+                    <td colspan="5" style="border: none;">
+                        <div class="d-flex justify-content-around donja">
+                            <div *ngFor="let igrac of res.igraci" style="text-align: center;">
+                                <img class="images" src="http://localhost:3000/{{igrac.slika}}"><br>
+                                <a href="">{{ igrac.imeIprezime }}</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+              </ng-template>
+        </p-table>
+        <ng-template #nemaTimova>
+            Trenutno nema timova u ovoj ligi
+        </ng-template>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<form [formGroup]="rezultatForm" (ngSubmit)="onSaveFormRezultat()">
+    <div>
+        <div class="form-group">
+            <label>{{tim1nazivlabel}}</label>
+            <input pInputText type="number" class="form-control" formControlName="rez1">
+        </div>
+        <br>
+        <div class="form-group">
+            <label>{{tim2nazivlabel}}</label>
+            <input pInputText type="number" class="form-control" formControlName="rez2">
+        </div>
+        <br>
+        <div class="form-group">
+            <p-fileUpload mode="basic" (onSelect)="getFile($event)" chooseLabel="Dodaj Zapisnik" formControlName="slika"></p-fileUpload>
+        </div>
+        
+    </div>
+    <br>
+    <div class="form-group">
+        <button pButton type="submit" class="btn btn-success"><i class="pi pi-check">&nbsp;</i>Sačuvaj</button>&nbsp;
+        <button pButton type="button" class="btn btn-secondary" (click)="onCancelRezultatForm()"><i class="pi pi-angle-left">&nbsp;</i>Nazad</button>
+    </div>
+</form>
+

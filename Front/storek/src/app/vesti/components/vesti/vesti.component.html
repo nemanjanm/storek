@@ -1,0 +1,30 @@
+<p-confirmDialog class="d-flex justify-content-center" #cd >
+    <ng-template pTemplate="footer">
+        <button type="button" pButton
+            icon="pi pi-check" label="Potvrdi"
+            (click)="cd.accept()">
+        </button>
+        <button type="button" pButton
+            icon="pi pi-times" label="Nazad"
+            (click)="cd.reject()">
+        </button>
+    </ng-template>
+</p-confirmDialog>
+<div class="container">
+    <div class="w-200 d-flex align-items-center justify-content-between">
+        <div class="d-flex justify-content-start"><h1>Vesti</h1></div>
+        <button (click)="dodaj()" *ngIf="admin" pButton type="button" class="add p-button"><i class="pi pi-plus">&nbsp;</i>Dodaj Vest</button>
+    </div>
+    <div class="row d-flex justify-content-center" *ngFor="let vest of vesti">
+        <h3>{{vest.naslov}}</h3>
+        <p *ngIf="vest.izmenjeno; else kreirano">Poslednja izmena: {{vest.datumIzmene | date}}</p>
+        <ng-template #kreirano>
+            <p>Datum kreiranja: {{vest.datumKreiranja | date}}</p>
+        </ng-template>
+        <button pButton type="button" (click)="procitaj(vest)" class="p-button-sm"><i class="pi pi-book">&nbsp;</i>Pročitaj</button>
+        <button *ngIf="admin" (click)="izmeni(vest)" pButton type="button" class="p-button-sm" [style]="{'background':'rgb(201, 172, 8)', 'border':'rgb(201, 172, 8)'}"><i class="pi pi-pencil">&nbsp;</i>Izmeni</button>
+        <button *ngIf="admin" (click)="obrisi(vest)" pButton type="button" class="p-button-sm" [style]="{'background':'rgb(233, 44, 44)', 'border':'rgb(233, 44, 44)'}"><i class="pi pi-trash">&nbsp;</i>Obriši</button>
+    </div>
+</div>
+<p-toast></p-toast>
+<router-outlet></router-outlet>

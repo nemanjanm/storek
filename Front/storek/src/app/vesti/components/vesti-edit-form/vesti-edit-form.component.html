@@ -1,0 +1,18 @@
+<form [formGroup]="vestiForm" (ngSubmit)="onSaveFormVesti()">
+    <div>
+        <div class="form-group">
+            <label>Naslov</label>
+            <input pInputText type="text" class="form-control" formControlName="naslov">
+        </div>
+        <br>
+        <div class="form-group">
+            <label>Tekst</label>
+            <textarea pInputTextarea type="text" class="form-control" formControlName="sadrzaj"></textarea>
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        <button pButton type="submit" class="btn btn-success"><i class="pi pi-check">&nbsp;</i>Sačuvaj</button>&nbsp;
+        <button pButton type="button" class="btn btn-secondary" (click)="onCancelVestiForm()"><i class="pi pi-angle-left">&nbsp;</i>Nazad</button>
+    </div>
+</form>

@@ -1,0 +1,23 @@
+<form [formGroup]="timForm" (ngSubmit)="onSaveFormTim()">
+    <div>
+        <div class="form-group">
+            <label>Naziv Tima</label>
+            <input pInputText type="text" class="form-control" formControlName="naziv">
+        </div>
+        <br>
+        <div class="form-group">
+            <label>Kapiten</label>
+            <input pInputText type="text" class="form-control" formControlName="kapiten">
+        </div>
+        <br>
+        <div class="form-group">
+            <label>Kontakt telefon</label>
+            <input pInputText type="text" class="form-control" formControlName="kontakt">
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        <button pButton type="submit" class="btn btn-success"><i class="pi pi-check">&nbsp;</i>Sačuvaj</button>&nbsp;
+        <button pButton type="button" class="btn btn-secondary" (click)="onCancelTimForm()"><i class="pi pi-angle-left">&nbsp;</i>Nazad</button>
+    </div>
+</form>

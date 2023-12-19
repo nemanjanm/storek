@@ -1,0 +1,21 @@
+@import "src/_variables.scss";
+
+.containter{
+    align-items: center;
+}
+.row{
+    text-align: center;
+    align-items: center;
+    padding: 10px;
+    border: 3px solid;
+    border-color: var(--primary-color);
+    margin-bottom: 3px;
+}
+
+.add{
+    width: 140px;
+}
+button {
+    width: 100px;
+    margin-right: 3px;
+}

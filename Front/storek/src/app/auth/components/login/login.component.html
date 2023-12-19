@@ -1,0 +1,20 @@
+<p-card styleClass="forgot-password-card mx-auto mt-5">
+    <h2 class="text-center mb-4">Uloguj se 123</h2>
+    <form class="w-100" [formGroup]="loginForm" (ngSubmit)="submit()">
+        <div class="field w-100">
+            <label for="email" class="block"></label>
+            <input class="w-100" pInputText id="username" placeholder="Korisničko ime" formControlName="username"/><br>
+        </div>
+        <br>
+        <div class="field w-100">
+            <p-password class="w-100" [feedback]="false" [toggleMask]="true" id="password" styleClass="w-100" inputStyleClass="w-100" placeholder="Lozinka" formControlName="password"></p-password><br>
+        </div>
+        <br>
+        <div class="w-100 d-flex align-items-center justify-content-between">
+            <button pButton type="submit" icon="pi pi-check" label="Potvrdi" [disabled]="loginForm.invalid"></button> 
+            <button pButton type="button" icon="pi pi-times" label="Nazad" class="p-button-secondary" routerLink="/pocetna" [style]="{'background':'rgb(233, 44, 44)', 'border':'rgb(233, 44, 44)'}"></button> 
+        </div>
+    </form>
+</p-card>
+<p-toast></p-toast>
+<router-outlet></router-outlet>
